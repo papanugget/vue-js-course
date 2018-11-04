@@ -13,5 +13,11 @@ const vm = new Vue({
     el: '#app',
     data: {
         email: 'grep@aol.com'
+    },
+    methods: {
+        process: function(e) {
+            // e.preventDefault();
+            alert('Submitted' + this.email);
+        }
     }
 });
