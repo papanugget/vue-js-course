@@ -2,9 +2,16 @@
 
 // $('#greeting').text('Hello from jQuery')
 
+// new Vue({
+//     el: '#app',
+//     data: {
+//         greeting: "Hello from Vue"
+//     }
+// });
+
 new Vue({
     el: '#app',
     data: {
-        greeting: "Hello from Vue"
+        email: 'grep@aol.com'
     }
 });
