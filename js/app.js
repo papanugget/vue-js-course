@@ -12,12 +12,14 @@
 const vm = new Vue({
     el: '#app',
     data: {
-        email: 'grep@aol.com'
+        email: 'grep@aol.com',
+        submitted: false
     },
     methods: {
         process: function(e) {
             // e.preventDefault();
-            alert('Submitted' + this.email);
+            // alert('Submitted' + this.email);
+            this.submitted = true;
         }
     }
 });
