@@ -13,7 +13,7 @@
     <title>Vue Form</title>
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <div class="container">
             <form v-if="!submitted" class="mt-5">
                 <div class="form-group">
@@ -23,12 +23,17 @@
                 <button class="btn btn-primary" @click.prevent="process" type="submit">Submit</button>
             </form>
             <h2 v-else v-cloak class="mt-5">Thank you for signing up!</h2>
-        </div>
+        </div> -->
         <!-- <h1>{{greeting}}</h1> -->
+    <!-- </div> -->
+    <div id="app">
+        <div class="container">
+            <img :src="imgSrc" :title="imgTitle" :alt="imgAlt">
+            <p>{{explanation}}</p>
+        </div>
     </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script> -->
     <script src="./js/app.js"></script>
 </body>
