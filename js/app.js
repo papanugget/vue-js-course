@@ -9,7 +9,7 @@
 //     }
 // });
 
-new Vue({
+const vm = new Vue({
     el: '#app',
     data: {
         email: 'grep@aol.com'
