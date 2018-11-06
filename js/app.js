@@ -40,3 +40,5 @@ axios.get(url)
         vm.imgTitle = res.data.title
         vm.explanation = res.data.explanation;
     });
+
+    
