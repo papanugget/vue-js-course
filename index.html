@@ -28,8 +28,24 @@
     <!-- </div> -->
     <div id="app">
         <div class="container">
-            <img :src="imgSrc" :title="imgTitle" :alt="imgAlt">
-            <p>{{explanation}}</p>
+            <div class="card mt-5">
+                <h2 class="card-header">Near Earth Objects</h2>
+                <table class="table">
+                    <thead class="thead-light">
+                        <th>Name</th>
+                        <th>Close Approach Date</th>
+                    </thead>
+                    <tbody v-cloak>
+                        <tr v-for="a in asteroids">
+                            <td>{{a.name}}</td>
+                            <td>{{getCloseApproachDate(a)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <img :src="imgSrc" :title="imgTitle" :alt="imgAlt">
+            <p>{{explanation}}</p> -->
+            
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

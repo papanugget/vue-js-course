@@ -47,6 +47,13 @@ const vm = new Vue({
                 vm.explanation = res.data.explanation;
             });
         },
+        getCloseApproachDate: function(a) {
+            if(a.close_approach_data.length > 0) {
+                return a.close_approach_data[0].close_approach_date;
+            } else {
+                return 'NA';
+            }
+        },
         fetchAsteroids: function() {
             const apiKey = 'z0YJP1kJd0Jg3INdrVgZffIc8CF7mDB1vVsqIPFw';
             const url = 'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=' + apiKey;
