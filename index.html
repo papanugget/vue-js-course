@@ -36,9 +36,10 @@
                         <th>Name</th>
                         <th>Close Approach Date</th>
                         <th>Miss Distance</th>
+                        <th>Remove</th>
                     </thead>
                     <tbody v-cloak>
-                        <tr v-for="(a, i) in asteroids">
+                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id">
                             <td>{{ i + 1 }}</td>
                             <td>{{a.name}}</td>
                             <td>{{getCloseApproachDate(a)}}</td>
@@ -47,6 +48,7 @@
                                     <li v-for="(value, key) in a.close_approach_data[0].miss_distance">{{key}}: {{value}}</li>
                                 </ul>
                             </td>
+                            <td><button v-on:click="remove(i)" class="btn btn-warning">Remove</button></td>
                         </tr>
                     </tbody>
                 </table>

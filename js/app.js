@@ -61,6 +61,9 @@ const vm = new Vue({
                 .then( res => {
                     vm.asteroids = res.data.near_earth_objects.slice(0, 10);
                 });
+        },
+        remove: function(i) {
+            this.asteroids.splice(i, 1);
         }
     }
 });
