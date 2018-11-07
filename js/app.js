@@ -33,6 +33,30 @@ const vm = new Vue({
         explanation: '',
         asteroids: []
     },
+    computed: {
+        numAsteroids: function() {
+            return this.asteroids.length;
+        },
+        closestObject: function() {
+            let neosHavingData = this.asteroids.filter( neo => {
+                return neo.close_approach_data.length > 0;
+            });
+            let simpleNeos = neosHavingData.map( neo => {
+                return {
+                    name: neo.name,
+                    miles: neo.close_approach_data[0].miss_distance_miles
+                };
+            });
+            let sortedNeos = simpleNeos.sort((a, b) => {
+                return a.miles - b.miles; 
+            });
+            if(sortedNeos.length > 0) {
+                return sortedNeos[0].name;
+            } else {
+                return "None";
+            }
+        }
+    },
     created: function() {
         this.fetchAsteroids();
     },
