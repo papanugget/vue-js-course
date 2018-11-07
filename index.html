@@ -34,7 +34,7 @@
                     <p>showing {{numAsteroids}} items</p>
                     <p>{{ closestObject }} has the shortest miss distance</p>
                 </div>
-                <table class="table">
+                <table class="table table-striped">
                     <thead class="thead-light">
                         <th>#</th>
                         <th>Name</th>
@@ -43,7 +43,7 @@
                         <th>Remove</th>
                     </thead>
                     <tbody v-cloak>
-                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id">
+                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" v-bind:style="[getRowStyle(a), {color: 'blue'}]" style="color: green">
                             <td>{{ i + 1 }}</td>
                             <td>{{a.name}}</td>
                             <td>{{getCloseApproachDate(a)}}</td>

@@ -88,6 +88,14 @@ const vm = new Vue({
         },
         remove: function(i) {
             this.asteroids.splice(i, 1);
+        },
+        getRowStyle: function(a) {
+            if(a.close_approach_data.length === 0) {
+                return {
+                    border: 'solid 3px red',
+                    color: 'red'
+                };
+            }
         }
     }
 });
