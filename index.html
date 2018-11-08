@@ -46,19 +46,21 @@
                         <th>Miss Distance</th>
                         <th>Remove</th>
                     </thead>
-                    <tbody v-cloak>
-                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" :class="{highlight: isMissingData(a), 'shadow-sm': true}">
-                            <td>{{ i + 1 }}</td>
-                            <td>{{a.name}}</td>
-                            <td>{{getCloseApproachDate(a)}}</td>
-                            <td>
-                                <ul v-if="a.close_approach_data.length">
-                                    <li v-for="(value, key) in a.close_approach_data[0].miss_distance">{{key}}: {{value}}</li>
-                                </ul>
-                            </td>
-                            <td><button v-on:click="remove(i)" class="btn btn-warning">Remove</button></td>
-                        </tr>
-                    </tbody>
+                    <!-- <tbody v-cloak> -->
+                        <transition-group tag="tbody" name="neo-list" v-cloak>
+                            <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" :class="{highlight: isMissingData(a), 'shadow-sm': true}">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{a.name}}</td>
+                                <td>{{getCloseApproachDate(a)}}</td>
+                                <td>
+                                    <ul v-if="a.close_approach_data.length">
+                                        <li v-for="(value, key) in a.close_approach_data[0].miss_distance">{{key}}: {{value}}</li>
+                                    </ul>
+                                </td>
+                                <td><button v-on:click="remove(i)" class="btn btn-warning">Remove</button></td>
+                            </tr>
+                        </transition-group>
+                    <!-- </tbody> -->
                 </table>
             </div>
             <!-- <img :src="imgSrc" :title="imgTitle" :alt="imgAlt">
