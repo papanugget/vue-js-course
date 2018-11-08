@@ -31,7 +31,8 @@ const vm = new Vue({
         imgTitle: '',
         imgAlt: '',
         explanation: '',
-        asteroids: []
+        asteroids: [],
+        showSummary: true
     },
     computed: {
         numAsteroids: function() {

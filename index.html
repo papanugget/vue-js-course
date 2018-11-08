@@ -13,7 +13,21 @@
             border: solid 3px red;
             color: red;
         } 
-    </style>
+        .shooting-star-leave-to, .shooting-star-enter {
+            transform: translateX(150px) rotate(30deg);
+            opacity: 0;
+        }
+        .shooting-star-enter-active, .shooting-star-leave-active {
+            transition: all .5s ease;
+        }
+        .neo-list-leave-to, .neo-list.enter {
+            opacity: 0;
+            transform: translateY(30px)
+        }
+        .neo-list-enter-active, .neo-list-leave-active {
+            transition: all .5s linear;
+        }
+     </style>
     <title>Vue Form</title>
 </head>
 <body>
@@ -34,9 +48,14 @@
         <div class="container">
             <div class="card mt-5">
                 <h2 class="card-header">Near Earth Objects</h2>
-                <div class="m-3" v-cloak v-if="numAsteroids > 0">
-                    <p>showing {{numAsteroids}} items</p>
-                    <p>{{ closestObject }} has the shortest miss distance</p>
+                <transition name="shooting-star">
+                    <div class="m-3" v-cloak v-if="numAsteroids > 0 && showSummary">
+                        <p>showing {{numAsteroids}} items</p>
+                        <p>{{ closestObject }} has the shortest miss distance</p>
+                    </div>
+                </transition>
+                <div class="m-3">
+                    <a href="#" @click="showSummary = !showSummary">Show/hide summary</a>
                 </div>
                 <table class="table table-striped" :class="[{'table-dark': false}, 'table-bordered']">
                     <thead class="thead-light">
@@ -47,19 +66,19 @@
                         <th>Remove</th>
                     </thead>
                     <!-- <tbody v-cloak> -->
-                        <transition-group tag="tbody" name="neo-list" v-cloak>
-                            <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" :class="{highlight: isMissingData(a), 'shadow-sm': true}">
-                                <td>{{ i + 1 }}</td>
-                                <td>{{a.name}}</td>
-                                <td>{{getCloseApproachDate(a)}}</td>
-                                <td>
-                                    <ul v-if="a.close_approach_data.length">
-                                        <li v-for="(value, key) in a.close_approach_data[0].miss_distance">{{key}}: {{value}}</li>
-                                    </ul>
-                                </td>
-                                <td><button v-on:click="remove(i)" class="btn btn-warning">Remove</button></td>
-                            </tr>
-                        </transition-group>
+                    <tbody is="transition-group" tag="tbody" name="neo-list" v-cloak>
+                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" v-bind:class="{highlight: isMissingData(a)}">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{a.name}}</td>
+                            <td>{{getCloseApproachDate(a)}}</td>
+                            <td>
+                                <ul v-if="a.close_approach_data.length">
+                                    <li v-for="(value, key) in a.close_approach_data[0].miss_distance">{{key}}: {{value}}</li>
+                                </ul>
+                            </td>
+                            <td><button v-on:click="remove(i)" class="btn btn-warning">Remove</button></td>
+                        </tr>
+                    </tbody>
                     <!-- </tbody> -->
                 </table>
             </div>
