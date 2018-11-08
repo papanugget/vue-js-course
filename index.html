@@ -8,6 +8,10 @@
     <style>
         [v-cloak] {
             display: none;
+        }
+        .highlight {
+            border: solid 3px red;
+            color: red;
         } 
     </style>
     <title>Vue Form</title>
@@ -34,7 +38,7 @@
                     <p>showing {{numAsteroids}} items</p>
                     <p>{{ closestObject }} has the shortest miss distance</p>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-striped" :class="[{'table-dark': false}, 'table-bordered']">
                     <thead class="thead-light">
                         <th>#</th>
                         <th>Name</th>
@@ -43,7 +47,7 @@
                         <th>Remove</th>
                     </thead>
                     <tbody v-cloak>
-                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" v-bind:style="[getRowStyle(a), {color: 'blue'}]" style="color: green">
+                        <tr v-for="(a, i) in asteroids" v-bind:key="a.neo_reference_id" :class="{highlight: isMissingData(a), 'shadow-sm': true}">
                             <td>{{ i + 1 }}</td>
                             <td>{{a.name}}</td>
                             <td>{{getCloseApproachDate(a)}}</td>
